@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team PKM | XiVara</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/theme/black.css">
+  <style>
+    :root {
+      --r-background-color: #0a0a0f;
+      --r-main-color: #e0e0e0;
+      --r-heading-color: #ffffff;
+      --r-link-color: #6ee7b7;
+      --accent: #6ee7b7;
+      --accent-dim: #34d399;
+      --warning: #fbbf24;
+      --danger: #ef4444;
+      --muted: #888;
+      --purple: #a78bfa;
+      --blue: #60a5fa;
+    }
+    .reveal {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 32px;
+    }
+    .reveal .slides { text-align: center; }
+    .reveal .slides section { padding: 20px 40px; }
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; font-weight: 600; }
+    .reveal h1 { font-size: 1.8em; margin-bottom: 0.3em; }
+    .reveal h2 { font-size: 1.3em; margin-bottom: 0.4em; }
+    .reveal h3 { font-size: 1em; color: var(--accent); margin-bottom: 0.3em; }
+    .reveal p { margin: 0.4em 0; }
+    .reveal .subtitle { font-size: 0.6em; color: var(--muted); margin-top: -0.3em; }
+    .reveal .muted { color: var(--muted); font-size: 0.85em; }
+    .reveal .highlight { color: var(--accent); font-weight: 600; }
+    .reveal .warning { color: var(--warning); }
+    .reveal .danger { color: var(--danger); }
+    .reveal ul { list-style: none; padding-left: 0; font-size: 0.85em; text-align: left; max-width: 600px; margin: 0 auto; }
+    .reveal ul li { margin: 0.4em 0; padding-left: 1.5em; position: relative; }
+    .reveal ul li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+    .reveal ul.check li::before { content: "✓"; }
+    .reveal ul.x li::before { content: "✗"; color: var(--danger); }
+    .reveal table { margin: 0.5em auto; font-size: 0.55em; border-collapse: collapse; }
+    .reveal table th {
+      background: rgba(110, 231, 183, 0.15);
+      color: var(--accent);
+      padding: 0.4em 0.6em;
+      border-bottom: 2px solid var(--accent);
+    }
+    .reveal table td { padding: 0.35em 0.6em; border-bottom: 1px solid #333; }
+    .xivara-logo { font-weight: 700; font-size: 2em; letter-spacing: -0.02em; }
+    .xivara-logo span { color: var(--accent); }
+    .reveal .card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1em 1.2em;
+      margin: 0.5em auto;
+      max-width: 580px;
+      text-align: left;
+    }
+    .reveal .card h3 { margin-top: 0; }
+    .reveal .card p { font-size: 0.85em; color: #ccc; }
+    .reveal .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; max-width: 700px; margin: 0 auto; }
+    .reveal .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.8em; max-width: 750px; margin: 0 auto; }
+    .reveal .brain-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; max-width: 700px; margin: 0 auto; }
+    .reveal .brain-box { 
+      background: rgba(255,255,255,0.05); 
+      border-radius: 12px; 
+      padding: 1em; 
+      text-align: left;
+    }
+    .reveal .brain-box.individual { border-left: 4px solid var(--purple); }
+    .reveal .brain-box.team { border-left: 4px solid var(--accent); }
+    .reveal .brain-box h3 { margin: 0 0 0.5em 0; font-size: 1em; }
+    .reveal .brain-box.individual h3 { color: var(--purple); }
+    .reveal .brain-box.team h3 { color: var(--accent); }
+    .reveal .brain-box ul { font-size: 0.8em; margin: 0; }
+    .reveal .brain-box ul li { margin: 0.25em 0; }
+    .reveal .folder-tree {
+      font-family: monospace;
+      font-size: 0.65em;
+      text-align: left;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .reveal .folder-tree .exec { color: var(--danger); }
+    .reveal .folder-tree .company { color: var(--warning); }
+    .reveal .folder-tree .domain { color: var(--accent); }
+    .reveal .folder-tree .owner { color: var(--muted); font-size: 0.9em; }
+    .reveal .callout {
+      background: rgba(110, 231, 183, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 0.8em 1em;
+      margin: 0.8em auto;
+      max-width: 550px;
+      font-size: 0.85em;
+    }
+    .reveal .callout.warning {
+      background: rgba(251, 191, 36, 0.1);
+      border-color: var(--warning);
+    }
+    .reveal .principle {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 0.8em 1em;
+      margin: 0.5em auto;
+      max-width: 550px;
+      text-align: left;
+    }
+    .reveal .principle .number {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.2em;
+      margin-right: 0.5em;
+    }
+    .reveal .principle .title { font-weight: 600; }
+    .reveal .principle .desc { color: var(--muted); font-size: 0.85em; margin-top: 0.3em; }
+    .reveal .access-grid {
+      display: grid;
+      grid-template-columns: auto 1fr 1fr 1fr;
+      gap: 0.3em;
+      font-size: 0.6em;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .reveal .access-grid .header { 
+      color: var(--accent); 
+      font-weight: 600; 
+      padding: 0.4em;
+      background: rgba(110, 231, 183, 0.1);
+      border-radius: 4px;
+    }
+    .reveal .access-grid .cell {
+      padding: 0.4em;
+      background: rgba(255,255,255,0.03);
+      border-radius: 4px;
+    }
+    .reveal .access-grid .write { color: var(--accent); }
+    .reveal .access-grid .read { color: var(--muted); }
+    .reveal .small { font-size: 0.6em; color: var(--muted); }
+    .reveal .quote { 
+      font-style: italic; 
+      color: #aaa; 
+      font-size: 0.9em; 
+      border-left: 3px solid var(--accent); 
+      padding-left: 1em; 
+      margin: 1em auto; 
+      max-width: 500px; 
+      text-align: left; 
+    }
+    .reveal .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5em;
+      font-size: 0.8em;
+      margin: 1em 0;
+    }
+    .reveal .flow .box {
+      background: rgba(255,255,255,0.05);
+      border-radius: 8px;
+      padding: 0.5em 0.8em;
+    }
+    .reveal .flow .arrow { color: var(--accent); font-size: 1.2em; }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      
+      <!-- Title -->
+      <section>
+        <h1>Team PKM</h1>
+        <p class="subtitle">Building a Shared Brain</p>
+        <p class="muted" style="margin-top: 2em;">How XiVara structures knowledge</p>
+      </section>
+
+      <!-- The Problem -->
+      <section>
+        <h2>The Problem</h2>
+        <div class="quote">
+          "Where did we put that decision?"<br>
+          "I thought we already discussed this."<br>
+          "Wait, who owns this?"
+        </div>
+        <p class="muted" style="margin-top: 1em;">Knowledge lives in Slack threads, email chains, meeting recordings, and individual heads. Then people leave. Or forget.</p>
+      </section>
+
+      <!-- Two Types of Knowledge -->
+      <section>
+        <h2>Two Types of Knowledge</h2>
+        <div class="brain-compare">
+          <div class="brain-box individual">
+            <h3>🧠 Individual Brain</h3>
+            <ul>
+              <li>Personal notes, drafts</li>
+              <li>Your own task lists</li>
+              <li>Learning & reference</li>
+              <li>Private opinions</li>
+              <li>Works in progress</li>
+            </ul>
+            <p class="muted" style="margin-top: 0.5em; font-size: 0.8em;">Yours alone. Dies with your employment.</p>
+          </div>
+          <div class="brain-box team">
+            <h3>🏢 Team Brain</h3>
+            <ul>
+              <li>Decisions & rationale</li>
+              <li>Strategy & governance</li>
+              <li>Shared knowledge</li>
+              <li>Meeting records</li>
+              <li>Canonical truth</li>
+            </ul>
+            <p class="muted" style="margin-top: 0.5em; font-size: 0.8em;">Shared asset. Survives turnover.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- The Vault IS the Team Brain -->
+      <section>
+        <h2>The Vault = Team Brain</h2>
+        <p class="muted">One place for shared truth. Everything links. Nothing duplicated.</p>
+        <div class="callout" style="margin-top: 1em;">
+          Strategy and governance live here.<br>
+          Execution (tickets, code, deploys) lives in <strong>Linear + GitHub</strong>.
+        </div>
+      </section>
+
+      <!-- Three Access Tiers -->
+      <section>
+        <h2>Three Access Tiers</h2>
+        <div class="principle">
+          <span class="number">1</span>
+          <span class="title" style="color: var(--danger);">Executive</span>
+          <div class="desc">Board-level. Legal, compliance, finance, fundraising. Exec-only.</div>
+        </div>
+        <div class="principle">
+          <span class="number">2</span>
+          <span class="title" style="color: var(--warning);">Company</span>
+          <div class="desc">People, brand, SOPs, shared knowledge. All employees read.</div>
+        </div>
+        <div class="principle">
+          <span class="number">3</span>
+          <span class="title" style="color: var(--accent);">Domain</span>
+          <div class="desc">Product, Engineering, AI, Sales, Ops. Owner + collaborators write.</div>
+        </div>
+      </section>
+
+      <!-- The Structure -->
+      <section>
+        <h2>The Structure</h2>
+        <div class="folder-tree">
+          <span class="exec">01-Executive/</span> <span class="owner">— Governance, legal, finance (exec-only)</span><br>
+          <span class="company">02-Company/</span> <span class="owner">— People, brand, SOPs (all read)</span><br>
+          <span class="domain">03-Operations/</span> <span class="owner">— Day-to-day (Alex)</span><br>
+          <span class="domain">04-Product/</span> <span class="owner">— What we build (Justin)</span><br>
+          <span class="domain">05-Engineering/</span> <span class="owner">— How we build (Cameron)</span><br>
+          <span class="domain">06-AI/</span> <span class="owner">— AI/ML strategy (Daryl)</span><br>
+          <span class="domain">07-Sales/</span> <span class="owner">— Who we sell to (Ellen)</span><br>
+          <br>
+          00-Inbox/ <span class="owner">— Quick capture, triaged weekly</span><br>
+          Log/ <span class="owner">— Daily, weekly, meetings</span><br>
+          Guide/ <span class="owner">— Onboarding docs</span><br>
+          Templates/ <span class="owner">— Reusable formats</span>
+        </div>
+      </section>
+
+      <!-- Why Numbered Prefixes -->
+      <section>
+        <h2>Why Numbered Prefixes?</h2>
+        <ul>
+          <li><strong>Sort order</strong> — Folders appear in logical sequence in Obsidian</li>
+          <li><strong>Access hierarchy</strong> — Lower numbers = higher access requirements</li>
+          <li><strong>Mental model</strong> — Executive → Company → Domains → Utilities</li>
+        </ul>
+        <div class="callout" style="margin-top: 1em;">
+          01 = most restricted<br>
+          07 = domain workspace<br>
+          00 = shared utility
+        </div>
+      </section>
+
+      <!-- Ownership Model -->
+      <section>
+        <h2>Ownership Model</h2>
+        <p class="muted">Every folder has a steward</p>
+        <table>
+          <tr>
+            <th>Area</th>
+            <th>Steward</th>
+            <th>Collaborators</th>
+            <th>Others</th>
+          </tr>
+          <tr>
+            <td>04-Product/</td>
+            <td class="highlight">Justin</td>
+            <td>Cameron, Ellen</td>
+            <td>Read</td>
+          </tr>
+          <tr>
+            <td>05-Engineering/</td>
+            <td class="highlight">Cameron</td>
+            <td>Justin, Daryl</td>
+            <td>Read</td>
+          </tr>
+          <tr>
+            <td>06-AI/</td>
+            <td class="highlight">Daryl</td>
+            <td>Cameron, Justin</td>
+            <td>Read</td>
+          </tr>
+          <tr>
+            <td>07-Sales/</td>
+            <td class="highlight">Ellen</td>
+            <td>Alex, Justin</td>
+            <td>Read</td>
+          </tr>
+          <tr>
+            <td>03-Operations/</td>
+            <td class="highlight">Alex</td>
+            <td>Ellen</td>
+            <td>Read</td>
+          </tr>
+        </table>
+        <p class="small">Stewards don't gatekeep — they ensure quality and consistency.</p>
+      </section>
+
+      <!-- Principle 1 -->
+      <section>
+        <h2>Core Principle</h2>
+        <h1 style="color: var(--accent);">Single Source of Truth</h1>
+        <p class="muted" style="margin-top: 0.5em;">Every entity lives in ONE place.</p>
+        <div class="grid-2" style="margin-top: 1em; font-size: 0.8em;">
+          <div class="card" style="padding: 0.7em; border-left: 3px solid var(--accent);">
+            <h3 style="font-size: 0.9em;">✓ Do this</h3>
+            <p>Link to the canonical file.<br><code>[[Ellen Pino]]</code></p>
+          </div>
+          <div class="card" style="padding: 0.7em; border-left: 3px solid var(--danger);">
+            <h3 style="font-size: 0.9em; color: var(--danger);">✗ Not this</h3>
+            <p>Copy the content into your doc.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Embeds -->
+      <section>
+        <h2>Use Embeds</h2>
+        <p class="muted">Show shared content without duplicating</p>
+        <div class="card" style="font-family: monospace; font-size: 0.75em; text-align: left;">
+          ![[Ellen Pino#Summary]]<br>
+          ![[Roadmap#Current Phase]]<br>
+          ![[Payment-Processing#Revenue Capture]]
+        </div>
+        <p class="muted" style="margin-top: 0.8em;">Changes to the source propagate automatically.<br>One truth, many views.</p>
+      </section>
+
+      <!-- Wiki Links -->
+      <section>
+        <h2>Wiki Links</h2>
+        <p class="muted">How everything connects</p>
+        <ul>
+          <li><strong>Simple link:</strong> <code>[[Board-Structure]]</code></li>
+          <li><strong>With alias:</strong> <code>[[07-Sales/Pipeline|Sales Pipeline]]</code></li>
+          <li><strong>To section:</strong> <code>[[Revenue-Model#Processing]]</code></li>
+        </ul>
+        <div class="callout warning" style="margin-top: 1em;">
+          <strong>Rule:</strong> Verify the file exists before linking.<br>
+          Broken links = broken trust.
+        </div>
+      </section>
+
+      <!-- Naming Conventions -->
+      <section>
+        <h2>Naming Conventions</h2>
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Format</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>Documents</td>
+            <td>Title-Case-Dashes</td>
+            <td><code>Revenue-Model.md</code></td>
+          </tr>
+          <tr>
+            <td>People</td>
+            <td>Full Name Spaces</td>
+            <td><code>Ellen Pino.md</code></td>
+          </tr>
+          <tr>
+            <td>Meetings</td>
+            <td>YYYY-MM-DD - Title</td>
+            <td><code>2026-02-24 - Board Session.md</code></td>
+          </tr>
+          <tr>
+            <td>Daily Logs</td>
+            <td>YYYY-MM-DD</td>
+            <td><code>2026-02-26.md</code></td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- The Inbox Pattern -->
+      <section>
+        <h2>The Inbox Pattern</h2>
+        <div class="flow">
+          <div class="box">Quick thought</div>
+          <span class="arrow">→</span>
+          <div class="box">00-Inbox/</div>
+          <span class="arrow">→</span>
+          <div class="box">Weekly triage</div>
+          <span class="arrow">→</span>
+          <div class="box">Proper home</div>
+        </div>
+        <p class="muted" style="margin-top: 1em;">Capture fast. Organize later.<br>Inbox gets triaged weekly — nothing lives there permanently.</p>
+      </section>
+
+      <!-- Log Structure -->
+      <section>
+        <h2>Log Structure</h2>
+        <div class="folder-tree">
+          Log/<br>
+          ├── Daily/ <span class="owner">— Personal work logs</span><br>
+          ├── Weekly/ <span class="owner">— Weekly summaries</span><br>
+          └── Meetings/<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;├── Board/ <span class="owner">— Board meetings (secretary writes)</span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;├── Executive/ <span class="owner">— Exec sessions</span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;├── Investor/ <span class="owner">— Investor meetings</span><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;└── External/ <span class="owner">— Partner/vendor meetings</span>
+        </div>
+        <p class="small" style="margin-top: 0.8em;">Meeting notes: don't edit after 24h without flagging changes.</p>
+      </section>
+
+      <!-- What Goes Where -->
+      <section>
+        <h2>What Goes Where</h2>
+        <table>
+          <tr>
+            <th>Content Type</th>
+            <th>Location</th>
+          </tr>
+          <tr>
+            <td>Strategy decisions</td>
+            <td>Domain workspace (04-07)</td>
+          </tr>
+          <tr>
+            <td>Meeting notes</td>
+            <td>Log/Meetings/</td>
+          </tr>
+          <tr>
+            <td>Person profile</td>
+            <td>02-Company/People/</td>
+          </tr>
+          <tr>
+            <td>Quick capture</td>
+            <td>00-Inbox/</td>
+          </tr>
+          <tr>
+            <td>Tickets & tasks</td>
+            <td class="warning">Linear (not vault)</td>
+          </tr>
+          <tr>
+            <td>Code & PRs</td>
+            <td class="warning">GitHub (not vault)</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Don't Do -->
+      <section>
+        <h2>Don't Do This</h2>
+        <ul class="x">
+          <li><strong>Duplicate content</strong> — Link or embed, never copy</li>
+          <li><strong>Edit others' workspaces</strong> — Ask the steward first</li>
+          <li><strong>Put execution here</strong> — Tasks go in Linear, code in GitHub</li>
+          <li><strong>Move files without updating links</strong> — Breaks the graph</li>
+          <li><strong>Delete files</strong> — Archive to Archive/YYYY/ instead</li>
+          <li><strong>Link to unverified files</strong> — Check it exists first</li>
+        </ul>
+      </section>
+
+      <!-- Daily Usage -->
+      <section>
+        <h2>Daily Usage</h2>
+        <ul class="check">
+          <li><strong>Morning:</strong> Check [[Dashboard]] for status and focus</li>
+          <li><strong>Quick capture:</strong> Drop notes in 00-Inbox/</li>
+          <li><strong>Meetings:</strong> Use Templates/Meeting-Note</li>
+          <li><strong>Find anything:</strong> Cmd+Shift+F (search) or Cmd+O (quick switch)</li>
+          <li><strong>Before creating:</strong> Search first — it might exist</li>
+        </ul>
+      </section>
+
+      <!-- Individual vs Team Summary -->
+      <section>
+        <h2>The Split</h2>
+        <div class="brain-compare">
+          <div class="brain-box individual">
+            <h3>🧠 Your Brain</h3>
+            <p style="font-size: 0.8em; color: #ccc;">Personal Obsidian vault, Apple Notes, whatever works for you.</p>
+            <ul>
+              <li>Drafts & thinking</li>
+              <li>Personal references</li>
+              <li>Learning notes</li>
+            </ul>
+          </div>
+          <div class="brain-box team">
+            <h3>🏢 Team Brain</h3>
+            <p style="font-size: 0.8em; color: #ccc;">XiVara vault. Shared, linked, versioned.</p>
+            <ul>
+              <li>Final decisions</li>
+              <li>Shared knowledge</li>
+              <li>Canonical truth</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted" style="margin-top: 1em;">Think in your brain. Publish to the team brain.</p>
+      </section>
+
+      <!-- Why This Matters -->
+      <section>
+        <h2>Why This Matters</h2>
+        <div class="quote">
+          "The team that documents well, scales well."
+        </div>
+        <ul style="margin-top: 1em;">
+          <li><strong>Onboarding</strong> — New hires can self-serve context</li>
+          <li><strong>Decisions</strong> — Rationale is preserved, not just outcomes</li>
+          <li><strong>Continuity</strong> — Knowledge survives turnover</li>
+          <li><strong>AI leverage</strong> — Structured knowledge is queryable</li>
+        </ul>
+      </section>
+
+      <!-- End -->
+      <section>
+        <div class="xivara-logo">Xi<span>Vara</span></div>
+        <p class="muted" style="margin-top: 1em;">Team PKM Guide</p>
+        <p class="small" style="margin-top: 2em;">Questions? Check Guide/ in the vault.</p>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      history: true,
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'fade',
+      backgroundTransition: 'fade'
+    });
+  </script>
+</body>
+</html>
